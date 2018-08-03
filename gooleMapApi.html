@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>google map API</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+            * element that contains the map. */
+
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 25.0497711,
+                    lng: 121.5327879
+                },
+                zoom: 17,
+                styles: [{
+                        "featureType": "administrative",
+                        "elementType": "all",
+                        "stylers": [{
+                            "saturation": "-100"
+                        }]
+                    },
+                    {
+                        "featureType": "administrative.province",
+                        "elementType": "all",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [{
+                                "saturation": -100
+                            },
+                            {
+                                "lightness": 65
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [{
+                                "saturation": -100
+                            },
+                            {
+                                "lightness": "50"
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [{
+                            "saturation": "-100"
+                        }]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [{
+                            "visibility": "simplified"
+                        }]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "all",
+                        "stylers": [{
+                            "lightness": "30"
+                        }]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "all",
+                        "stylers": [{
+                            "lightness": "40"
+                        }]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [{
+                                "saturation": -100
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [{
+                                "hue": "#ffff00"
+                            },
+                            {
+                                "lightness": -25
+                            },
+                            {
+                                "saturation": -97
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels",
+                        "stylers": [{
+                                "lightness": -25
+                            },
+                            {
+                                "saturation": -100
+                            }
+                        ]
+                    }
+                ]
+            });
+            var markerData = [{
+                    position: {
+                        lat: 25.049811,
+                        lng: 121.532763
+                    },
+                    map: map,
+                    title: '公司'
+                },
+                {
+                    position: {
+                        lat: 25.050783,
+                        lng: 121.530510
+                    },
+                    map: map,
+                    title: '過譽'
+                },
+                {
+                    position: {
+                        lat: 25.052387,
+                        lng: 121.528158
+                    },
+                    map: map,
+                    title: '唱個'
+                },
+            ];
+            for (var i = 0; i < markerData.length; i++) {
+                var marker = new google.maps.Marker(markerData[i])
+            }
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0uxb-yLnnHwdX3igJls0o1L-2RGlArog&callback=initMap" async
+        defer></script>
+</body>
+
+</html>

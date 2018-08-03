@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            padding: 30px;
+            display: block;
+            margin: 30px auto;
+            border: 1px solid black;
+        }
+        li{
+            margin: 10px 0;
+            border: 1xp solid black;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+    <script>
+
+        // 事件綁定父元素，但由子元素觸發，省去多次綁定事件
+        let ul = document.querySelector('ul');
+        
+        let showText = function(e){
+            if(e.target.nodeName !== 'LI') return;
+            console.log(e.target.nodeName); // "LI"
+            console.log(e.target.textContent); // N
+            console.log(this); // ul
+        }
+        ul.addEventListener('click', showText);
+
+    </script>
+</body>
+</html>

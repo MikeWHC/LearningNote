@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <script>
+        // 資料傳輸
+        // 先建立一個XMLHttpRequest 物件
+        let xhr = new XMLHttpRequest;
+        
+        // 方法，網址，非同步與否
+        // openData.epa
+        xhr.open('GET', 'http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000139-001', true);
+        // 送出請求，參數為body
+        xhr.send(null);
+        
+        // 可在各個時期查看xhr物件
+        // 其中readyState屬性代表的意思為:
+        // 0（還沒開始）
+        // 1（讀取中，open()）
+        // 2（已讀取）
+        // 3（資訊交換中）
+        // 4（一切完成，send()）
+        
+        // 取得資料再執行，callback
+        xhr.onload = function(){
+            if(xhr.status == 200){ // 成功取得資料
+                console.log(xhr.responseText); // 因為是非同步所以一定要寫在裡面
+            }
+        }
+
+
+        // 模擬表單傳送
+        // xhr.sendRequestHeader('Content-type', 'application/x-www-form-urlencoded') // 特殊的Content-type
+        // xhr.send('email=mike@gmail.com&password=123456') // 一樣是用query string的模式(form data)
+
+        // 傳送JSON資料
+        // xhr.sendRequestHeader('Content-type', 'application/json')
+        // let json = {name: 'Mike', age: 30};
+        // let dataStr = JSON.stringify(json);
+        // xhr.send(dataStr) // 只能傳送字串，用JSON.stringify轉換
+
+    </script>
+</body>
+</html>

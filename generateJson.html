@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>generate json</title>
+</head>
+<body>
+    <script>
+        let dataAll = [];
+        let timestamp = 1530374400000;
+        let span = 10000;
+        for(var i=0;i<8640;i++){
+          let data = {};
+          let t = timestamp + i * span;
+          let dataArr = [];
+          data.time = formatTime(new Date(t));
+        //   data.temperature = Math.round(Math.random() * 5 * 10) / 10 + 30;
+        //   data.temperature = Math.round(Math.random() * 8 * 10) / 10 + 35;
+          data.temperature = Math.round(Math.random() * 2 * 10) / 10 + 25;
+
+          dataAll.push(Object.values(data));
+        }
+        function formatTime(time){
+            return time.getFullYear() + '' 
+            + ('0' + (time.getMonth()+1)).slice(-2) + '' 
+            + ('0' + (time.getDate())).slice(-2) + '' 
+            + ('0' + (time.getHours())).slice(-2) + '' 
+            + ('0' + (time.getMinutes())).slice(-2) + '' 
+            + ('0' + (time.getSeconds())).slice(-2) + '000' 
+        }
+        document.write(JSON.stringify(dataAll));
+    </script>
+</body>
+</html>

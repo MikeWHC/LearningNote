@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>stopPropogation</title>
+    <style>
+        .bigbox{
+            display: block;
+            margin: 30px auto;
+            background-color: #ccc;
+            width: 500px;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+        }
+        .box1{
+            background-color: #555555;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            border: 2px solid red;
+            cursor: pointer;
+            
+        }
+        .box2{
+            background-color: lightblue;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            border: 2px solid red;
+            cursor: pointer;
+
+        }
+        h3{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="bigbox">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+    <h3>點到<span></span></h3>
+    <script>
+        let bigBox = document.querySelector('.bigbox'),
+            box1 = document.querySelector('.box1'),
+            box2 = document.querySelector('.box2'),
+            span = document.querySelector('h3 span');
+        
+
+        // 用父元素註冊搭配switch解決
+        bigBox.addEventListener('click', function(e){
+            span.textContent = e.target.className;
+            let className = e.target.className,
+                alertMessege;
+            switch(className){
+                case 'bigbox':
+                    alertMessege = 'taskComplete';
+                    break;
+                case 'box1':
+                    alertMessege = 'taskEdit';
+                    break;
+                case 'box2':
+                    alertMessege = 'taskDelete';
+                    break;
+                default:
+                    alertMessege = 'default';
+                    break;
+            }
+            // alert(alertMessege);
+            console.log(alertMessege);
+        })
+
+        // stopPropagation
+        bigBox.addEventListener('click', function(e){
+            console.log('click bigbox');
+        })
+        box1.addEventListener('click', function(e){
+            e.stopPropagation();
+            console.log('click box1');
+        })
+        box2.addEventListener('click', function(e){
+            e.stopPropagation();
+            console.log('click box2');
+        })
+    </script>
+</body>
+</html>

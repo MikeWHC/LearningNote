@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addEvetnListener</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // 與onClick不同，可以綁定註冊的元素在this
+        let box = document.querySelector('.box');
+        let logThis = function () {
+            console.log('bind this: ', this);
+        }
+        box.addEventListener('click', function () {
+            console.log('traditional this: ', this); // box
+        })
+        box.addEventListener('click', logThis.bind(this)); // window
+        box.addEventListener('click', () => console.log('arrow func this: ', this)); // window
+
+        let foo = function () {
+            box.addEventListener('click', function () {
+                console.log(this); //box
+            })
+            box.addEventListener('click', () => {
+                console.log(this); // window
+            })
+            console.log(this); //window
+        }
+        foo();
+
+        var Something = function (element) {
+            // |this| is a newly created object
+            this.name = 'Something Good';
+            this.onclick1 = function (event) {
+                console.log(this.name); // undefined, as |this| is the element
+            };
+            this.onclick2 = function (event) {
+                console.log(this.name); // 'Something Good', as |this| is bound to newly created object
+            };
+            element.addEventListener('click', this.onclick1, false);
+            element.addEventListener('click', this.onclick2.bind(this), false); // Trick
+        }
+        var s = new Something(box);
+    </script>
+</body>
+
+</html>

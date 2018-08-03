@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Promise</title>
+</head>
+<body>
+    <script>
+        function funcA(){
+            return new Promise(function(resolve, reject){
+                window.setTimeout(function(){
+                console.log('A');
+                resolve('A');
+                }, (Math.random() + 1) * 1000);
+            });
+        }
+
+        function funcB(){
+            return new Promise(function(resolve, reject){
+                window.setTimeout(function(){
+                console.log('B');
+                resolve('B');
+                }, (Math.random() + 1) * 1000);
+            });
+        }
+
+        function funcC(){
+            return new Promise(function(resolve, reject){
+                window.setTimeout(function(){
+                console.log('C');
+                resolve('C');
+                }, (Math.random() + 1) * 1000);
+            });
+        }
+        // 依序執行
+        funcA().then(funcB).then(funcC);
+
+        // 會等到三個都resolve才執行then
+        Promise.all([funcA(), funcB(), funcC()])
+            .then(function(){ console.log('上菜'); });
+    </script>
+</body>
+</html>

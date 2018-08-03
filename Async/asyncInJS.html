@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asynchronous</title>
+</head>
+<body>
+    <script>
+        
+
+        function timer(){
+            var ms = 3000 + new Date().getTime();
+            while(new Date() < ms){}
+            console.log('loop done!')
+        }
+        function clickHandler(){
+            console.log('click event');
+        }
+
+        document.addEventListener('click', clickHandler);
+
+        timer();
+        console.log('all done');
+
+        for (let i = 0; i < 10; i++) {
+            console.log(i+'')
+            setTimeout(function () {
+                console.log(i);
+            }, i*1000);
+        }
+        // 會先印出 0-9的字串 在每秒依序印出0-9的數字 
+        // 用let 宣告會產生十個環境
+
+        for (var i = 0; i < 10; i++) {
+            console.log(i+'');
+            (function(i){
+                setTimeout(function () {
+                    console.log(i);
+                }, i*1000);
+            })(i);
+        }
+
+        // 用IIFE建立環境傳值進去，每個IIFE會記錄當時的i
+        </script>
+</body>
+</html>
