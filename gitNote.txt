@@ -1,0 +1,10 @@
+-push repo
+git init
+git config --global user.name "YourName"
+git config --global user.email "YourEmail"
+create .gitignore
+git add *
+git commit -m "message"
+git remote add <origin> URL
+git pull --allow-unrelated-histories
+git push

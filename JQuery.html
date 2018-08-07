@@ -8,6 +8,18 @@
 </head>
 <body>
     <div class="test"></div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -17,6 +29,16 @@
         let test = $('.test');
         test.data('test', 'test');
         console.log(test.data());
+
+        // :nth-child(n) & nth-of-type(n) (n從1開始)
+        // 都是同一層結構去找
+        // child只看順序，type再加上只看同一種tag
+
+        // $('selectorA, selectorB') & $('selectorA', 'selectorB')
+        // 前者匹配AB兩個元素，後者匹配B裡面的A一個元素(等同$('selectorB selectorA')但是$物件有些許不同，不過選到的element是一樣)
+
+        // .filter()可傳入selector, $(), element, function
+        // function可傳入index(0開始)，this綁定每次傳入的element，回傳true即留下，false則捨去
     </script>
 </body>
 </html>
