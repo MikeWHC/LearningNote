@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>curried function</title>
+</head>
+<body>
+    <script>
+        let add = (x,y) => x + y;
+        add(2,3); //=> 5
+        let add = x => y => x + y;
+        let add = function (x) {
+            return function (y) {
+                return x + y;
+            };
+        };
+        //
+        const excludeFoo = function(x){
+            return x !== 'foo'
+        }
+        const sample = ['bar', 'foo'];
+        const withoutFoo = sample.filter(excludeFoo);
+        console.log(withoutFoo); // ['bar']
+        //
+        const exclude = function(x, str){
+            return x !== str
+        }
+        try{
+            const withoutStr = sample.filter(exclude('foo')); // error 
+            console.log(withoutStr)
+        }catch{
+            throw Error
+        }
+        //
+        const withoutStrCorrect = sample.filter(exclude.bind(null, 'foo'))
+        console.log(withoutStrCorrect); // ['bar']
+        //
+        const notEqual = (x,y) => x !== y
+
+        const curry = f => x => y => f(x,y)
+
+        const samples = ['foo', 'bar']
+
+        const foos = samples.filter(curry(notEqual)('foo'))
+
+        console.log(foos)
+
+        let composeAsync = (...funcs) => x => funcs.reduce(applyAsync, Promise.resolve(x));
+        let transformData = composeAsync(func1, asyncFunc1, asyncFunc2, func2);
+        transformData(data);
+        </script>
+</body>
+</html>

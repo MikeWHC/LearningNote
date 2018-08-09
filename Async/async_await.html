@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Async Await</title>
+</head>
+
+<body>
+    <script>
+        /*
+        當 async 函式被呼叫時，它會回傳一個 Promise。
+        如果該 async 函式回傳了一個值，Promise 的狀態將為一個帶有該回傳值的 resolved。
+        如果 async 函式拋出例外或某個值，Promise 的狀態將為一個帶有被拋出值的 rejected。
+
+        async 函式內部可以使用 await 表達式，它會暫停此 async 函式的執行，
+        並且等待傳遞至表達式的 Promise 的解析，解析完之後會回傳解析值，並繼續此 async 函式的執行。
+        */
+        function resolveAfter2Seconds(x) {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(x);
+                }, 2000);
+            });
+        }
+
+
+        async function add1(x) {
+            const a = await resolveAfter2Seconds(20);
+            const b = await resolveAfter2Seconds(30);
+            return x + a + b;
+        }
+
+        add1(10).then(v => {
+            console.log(v); // prints 60 after 4 seconds.
+        });
+
+
+        async function add2(x) {
+            const p_a = resolveAfter2Seconds(20);
+            const p_b = resolveAfter2Seconds(30); // timer一起被建立
+            return x + await p_a + await p_b; // 此時await會各自等待2秒(同時)
+        }
+
+        add2(10).then(v => {
+            console.log(v); // prints 60 after 2 seconds.
+        });
+
+        //////////////////////
+        // Promise寫法
+        function getProcessedData(url) {
+            return downloadData(url) // returns a promise
+                .catch(e => {
+                    return downloadFallbackData(url); // returns a promise
+                })
+                .then(v => {
+                    return processDataInWorker(v); // returns a promise
+                });
+        }
+        // 改成async await寫法
+        async function getProcessedData(url) {
+            let v;
+            try {
+                v = await downloadData(url);
+            } catch (e) {
+                v = await downloadFallbackData(url);
+            }
+            return processDataInWorker(v);
+        }
+    </script>
+</body>
+
+</html>

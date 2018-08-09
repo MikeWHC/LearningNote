@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function expression</title>
+</head>
+<body>
+    <script>
+        greet(); // 'hi'(hoist)
+        function greet(){
+            console.log('hi');
+        }
+
+        greetAnonymous(); // error，雖然記憶體已經有greetAnonymous(hoist)，但預設值是undefined，還未將他指向函式
+        var greetAnonymous = function(){
+            console.log('hi');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>by value and by reference</title>
+</head>
+<body>
+    <script>
+        // primitive value all by value
+        var a = 3;
+        var b = a;
+        console.log(a); //3
+        console.log(b); //3
+        
+        b = 5;        
+        console.log(a); //3
+        console.log(b); //5
+        
+        // object(array/function) all by reference
+        var c = { greeting: 'hi'}
+        var d = c;
+        console.log(c.greeting); // 'hi'
+        console.log(d.greeting); // 'hi'
+        
+        c.greeting = 'hello'; //mutate
+        console.log(c.greeting); // 'hello'
+        console.log(d.greeting); // 'hello'
+        
+        // even if it pass to a function
+        function changeGreeting(obj){
+            obj.greeting = '你好';
+        };        
+        console.log(c.greeting); // '你好'
+        console.log(d.greeting); // '你好'
+        
+        // equal operators set up new memory space (new address)
+        c = { greeting: 'hola'};        
+        console.log(c.greeting); // 'hola'
+        console.log(d.greeting); // '你好'
+        
+        // comparison operators
+        // 除了基本型別比較值，其他比較記憶體位置
+        var e, f;
+        e = {name: 'Ken'};
+        f = {name: 'Ken'};
+        e == f; //false
+        e === f; //false
+</script>
+</body>
+</html>

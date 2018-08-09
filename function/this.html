@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this</title>
+</head>
+
+<body>
+    <script>
+        function a() {
+            console.log(this);
+            this.newVariable = 'hello';
+        }
+        a(); // window物件
+        console.log(newVariable); // 'hello'
+
+        // 物件方法中的this指向物件
+        // 但是物件方法中的"函式"的this指向window
+        // 
+        var obj = {
+            name: 'Jane',
+            greeting: function () {
+                // var self = this; object by reference已經將位置存起來，後面用self變數就不怕this被改變
+                console.log(this); // obj
+                console.log(this.name); // 'Jane'
+
+                var changeName = function () {
+                    this.name = 'Opus'; // window
+                    console.log(this.name); // Opus
+                }
+                changeName();
+                console.log(this.name); // Jane
+            }
+        }
+        obj.greeting();
+        console.log(name); // Opus
+
+
+    </script>
+</body>
+
+</html>

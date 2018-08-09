@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Async Await</title>
+</head>
+
+<body>
+    <script>
+        
+        // 1.  fetch API 提供了一個能獲取(包含跨網路)資源的介面，比起XMLHttpRequest更強更有彈性(容易使用且很強大)
+        //     fetch用Promise實作解決非同步回呼的問題。
+        // 2.  新的瀏覽器大多支援此功能，如果要相容到舊的瀏覽器需要用fetch polyfill。
+        // 3.  跨域請求時(子網域或是不同埠號)，還需要伺服器端同意要求的request，fetch無法解決。
+        // 4.  fetch()即使在狀態碼為404/500時回傳的Promise仍然是resolved，只有在網路線或是request未完成才會是rejected
+        // 5.  預設不傳送cookie(credential: omit或same-origin)，再init object可以將credential屬性設為same-origin(同源)或include(什麼情況都會傳)
+        // 6.  詳細的規格還是看文件，重要的包括response的屬性和方法，requestBody允許的格式，init object的詳細規格
+
+        // HTML
+        fetch('/users.html')
+            .then(function (response) {
+                return response.text()
+            }).then(function (body) {
+                document.body.innerHTML = body
+            })
+
+        // JSON
+        fetch('/users.json')
+            .then(function (response) {
+                return response.json()
+            }).then(function (json) {
+                console.log('parsed json', json)
+            }).catch(function (ex) {
+                console.log('parsing failed', ex)
+            })
+
+        // Response metadata
+        fetch('/users.json').then(function (response) {
+            console.log(response.headers.get('Content-Type'))
+            console.log(response.headers.get('Date'))
+            console.log(response.status)
+            console.log(response.statusText)
+        })
+
+        // Post form
+        var form = document.querySelector('form')
+
+        fetch('/users', {
+            method: 'POST',
+            body: new FormData(form)
+        })
+
+        // Post JSON
+        fetch('/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: 'Hubot',
+                login: 'hubot',
+            })
+        })
+
+        // File upload
+        var input = document.querySelector('input[type="file"]')
+
+        var data = new FormData()
+        data.append('file', input.files[0])
+        data.append('user', 'hubot')
+
+        fetch('/avatars', {
+            method: 'POST',
+            body: data
+        })
+
+        // Handling HTTP error statuses
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response
+            } else {
+                var error = new Error(response.statusText)
+                error.response = response
+                throw error
+            }
+        }
+
+        function parseJSON(response) {
+            return response.json()
+        }
+
+        fetch('/users')
+            .then(checkStatus)
+            .then(parseJSON)
+            .then(function (data) {
+                console.log('request succeeded with JSON response', data)
+            }).catch(function (error) {
+                console.log('request failed', error)
+            })
+
+        // Sending cookies
+        // For CORS requests, use credentials: 'include'
+        // to allow sending credentials to other domains:
+        fetch('https://example.com:1234/users', {
+            credentials: 'include' // 有的瀏覽器(可能是舊版)預設是不傳送-omit
+        })
+    </script>
+</body>
+
+</html>

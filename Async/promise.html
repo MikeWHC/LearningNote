@@ -1,45 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Promise</title>
 </head>
+
 <body>
     <script>
-        function funcA(){
-            return new Promise(function(resolve, reject){
-                window.setTimeout(function(){
-                console.log('A');
-                resolve('A');
-                }, (Math.random() + 1) * 1000);
+        // Promise有三種狀態
+        // 1. pending: 擱置，初始狀態，非下列任一種狀態
+        // 2. fulfilled: 實現，操作完成
+        // 3. rejected: 拒絕，操作失敗
+
+        // Promise.prototype.catch(rejectedHandler)
+        // Promise.prototype.then(fulfilledHandler, rejectedHandler)
+
+        // 如果有三個非同步函式，如何做到依序執行以及全部都執行完再執行其他函式(callback)
+        // 將非同步函式用Promise物件包裝起來回傳，各自在非同步函式執行完畢時執行resolve()
+        function funcA() {
+            return new Promise(function (resolve, reject) {
+                window.setTimeout(function () {
+                    console.log('A');
+                    resolve('A');
+                }, 3000);
             });
         }
 
-        function funcB(){
-            return new Promise(function(resolve, reject){
-                window.setTimeout(function(){
-                console.log('B');
-                resolve('B');
-                }, (Math.random() + 1) * 1000);
+        function funcB() {
+            return new Promise(function (resolve, reject) {
+                window.setTimeout(function () {
+                    console.log('B');
+                    resolve('B');
+                }, 2000);
             });
         }
 
-        function funcC(){
-            return new Promise(function(resolve, reject){
-                window.setTimeout(function(){
-                console.log('C');
-                resolve('C');
-                }, (Math.random() + 1) * 1000);
+        function funcC() {
+            return new Promise(function (resolve, reject) {
+                window.setTimeout(function () {
+                    console.log('C');
+                    resolve('C');
+                }, 1000);
             });
         }
         // 依序執行
-        funcA().then(funcB).then(funcC);
+        funcA().then(funcB).then(funcC); // 印出A->B->C，間隔3/2/1秒
 
-        // 會等到三個都resolve才執行then
-        Promise.all([funcA(), funcB(), funcC()])
-            .then(function(){ console.log('上菜'); });
+        // 幾乎同時(非同步)執行，會等到三個都resolve(或reject)才執行then
+        Promise.all([funcA(), funcB(), funcC()]) // 依序印出C->B->A，間隔一秒
+            .then(function (values) {
+                console.log(values); // 最後印出['A','B','C']，照著傳入的順序，不管執行結束的順序
+            });
+
+        //////////////////////////////
+        // 為了避免意外，傳給 then 的函數不會被同步地呼叫，即使是完成的 Promise：
+        Promise.resolve().then(() => console.log(2));
+        console.log(1); // 1, 2
+
+        const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+        wait().then(() => console.log(4));
+        Promise.resolve().then(() => console.log(2)).then(() => console.log(3));
+        console.log(1); // 1, 2, 3, 4
+        /////////////////////////////
+        // Promise.all(iterable)
+        // iterable中的函式以非同步執行，最終回傳一個Promise物件
+        // 此物件全部函式resolve時被fullfill，任一函式reject時reject
+        // 若回傳的 promise 被實現，它將以一個實現值的陣列被實現
+
+        // Promise.race(iterable);
+        // 類似Promise.all()，回傳解決或拒絕只要任一函式被解決或拒絕
+
+        ////////////////////////////
+        // 建立Promise
+        // Promise建構式，傳入一個有兩個參數的函式，此兩個參數分別代表resolve/reject方法，可分別在實現和出錯時呼叫
+        // 便會回傳一個相對應狀態的Promise物件
+        const myPromise = new Promise((resolve, reject) => {
+            // 執行一些非同步作業，最終呼叫:
+            //
+            //   resolve(someValue); // 實現
+            // 或
+            //   reject("failure reason"); // 拒絕
+        });
+        // 要提供一個函式 promise 功能，讓它回傳一個 promise 即可：
+        function myAsyncFunction(url) {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", url);
+                xhr.onload = () => resolve(xhr.responseText);
+                xhr.onerror = () => reject(xhr.statusText);
+                xhr.send();
+            });
+        };
     </script>
 </body>
+
 </html>

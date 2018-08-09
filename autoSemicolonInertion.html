@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>automatic semicolon insertion</title>
+</head>
+<body>
+    <script>
+        // parser 會逐字解析，即使沒有加上分號也會在看到carriage return(換行符)自動補上
+        // 這特性可以讓coder不一定要加上分號(但不建議)
+        // 卻會在某些情況發生預期之外的事
+        function a(){
+            return // 自動補上分號
+            {
+                name: 'opera'
+            }
+        }
+        console.log(a()) // undefined
+        </script>
+</body>
+</html>
