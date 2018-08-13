@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object Inherit</title>
+</head>
+<body>
+    <script>
+        // polyfill
+        if(!Object.create){
+            Object.create = function(obj){
+                if(arguments.length > 1){
+                    throw new Error('Object.create implementation' + 
+                    ' only accepts the first parameter.')
+                }                
+                function F() {}
+                F.prototype = obj;
+                return new F();
+            }
+        }
+
+        let person = {
+            firstname: 'default',
+            lastname: 'default',
+            greet: function(){
+                return "Hi, I'm " + this.firstname;
+            }
+        }
+
+        let mike = Object.create(person); //建立一個空物件，原型為person
+        mike.firstname = 'Mike'; // 加上屬性蓋住原型屬性
+        mike.lastname = 'Wu';
+        console.log(mike.greet()); // 原型方法
+    </script>
+</body>
+</html>

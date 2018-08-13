@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function constructor</title>
+</head>
+<body>
+    <script>
+        // 構造函式function constructor
+        // 為建立物件最基本的方法        
+        function Person(firstname, lastname){
+            // 用new運算子運算時會執行下面幾件事
+            // 1. this指向新的空物件
+            console.log(this); // {} empty object
+            // 2. 設定此物件的屬性
+            this.firstname = firstname; // 因為是函式，所以也有參數
+            this.lastname = lastname;
+            console.log('this function is invoked!');
+            // 3. 不設定回傳值，自動回傳設定後的物件
+            // return {greeting: 'Hello!'} // 會蓋掉原本的物件
+        }
+        // !!!為什麼不在構造函式就定義方法??
+        // 因為屬性會不同，但方法都是一樣的，定義在原型上只需要佔據一次記憶體
+        // 但所有實例都可以參考到同樣的方法
+        Person.prototype.getFulName = function(){
+            return this.firstname + ' ' + this.lastname;
+        }
+
+        var mike = new Person('Mike', 'Wu'),
+            vanessa = new Person('Vanessa', 'Tang');
+        
+        console.log(mike, vanessa);
+        
+        // 所有Person的實例都會參考到prototype的getFullName方法
+        console.log(mike.getFulName());
+        console.log(vanessa.getFulName());
+    </script>
+</body>
+</html>

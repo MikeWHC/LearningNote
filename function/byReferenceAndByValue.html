@@ -40,6 +40,18 @@
         console.log(c.greeting); // 'hola'
         console.log(d.greeting); // '你好'
         
+        // 傳參數!!!call by sharing??
+        ((c) => c = {greeting: 'hello'})(c);
+        console.log(c.greeting); // 'hola'
+        ((c) => c.greeting = 'namaste')(c);
+        console.log(c.greeting); // 'namaste'
+        
+        //  不傳參數就是修改原本的變數
+        (() => c = {greeting: 'hello'})();
+        console.log(c.greeting); // 'hello'
+        (() => c.greeting = 'hola')();
+        console.log(c.greeting); // 'halo'
+        
         // comparison operators
         // 除了基本型別比較值，其他比較記憶體位置
         var e, f;

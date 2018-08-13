@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>built-in function constructor</title>
+</head>
+<body>
+    <script>
+        // 內建的構造函式像是Number, Date, String...等
+        // 功用都是提供方法(prototype)和特定屬性
+        var a = new Number(3); // a是物件不是純值
+        // 方法式定義在原型上
+        console.log(a.toFixed(2)); // 3.00
+        
+        var b = 3;
+        // 就算是純值，JavaScript仍然會將將其包進物件裡，提供方法及屬性作運算
+        console.log(b.toFixed(2)); // 3.00
+
+        // 自訂String method
+        String.prototype.isLengthGreaterThan = function(limit){
+            return this.length > limit;
+        }
+        var str = 'apple';
+        console.log(str.isLengthGreaterThan(3)); // true
+        // 'apple'.isLengthGreaterThan(3) 也可以成功回傳true
+        // 字串會被自動轉換成物件(但數字不行，3.toFixed(2)會錯誤)
+
+        // !!!所以盡量別用構造函式建立純值
+        a == b; // true
+        a === b; // false
+
+        // 但拿它們來做型別轉換函式可能是有用的
+        var c = Numeber('3');
+        console.log(c)
+    </script>
+</body>
+</html>

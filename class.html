@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(firstname, lastname){
+                this.firstname = firstname;
+                this.lastname = lastname;
+            }
+            greet(){
+                return 'Hi, ' + this.firstname;
+            }
+        }
+        let mike = new Person('Mike', 'Wu');
+        class Pirates extends Person{
+            constructor(firstname, lastname){
+                super(firstname, lastname);
+            }
+            greet(){
+                return 'Aye, ' + this.firstname; // 可以覆寫方法
+            }
+        }
+        let ken = new Pirates('Ken', '77');
+    </script>
+</body>
+</html>
