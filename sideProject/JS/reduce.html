@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reduce</title>
+</head>
+<body>
+    <script>
+        let datas = [{
+        "id": 1,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 10,
+        "id_member": 15,
+        "order_date": "2018-05-29 15:51:03"
+    },
+    {
+        "id": 2,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 11,
+        "id_member": 15,
+        "order_date": "2018-05-29 15:51:03"
+    },
+    {
+        "id": 3,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 3,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:15:12"
+    },
+    {
+        "id": 4,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 9,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:15:12"
+    },
+    {
+        "id": 5,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 15,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:15:12"
+    },
+    {
+        "id": 6,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 6,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:19:03"
+    },
+    {
+        "id": 7,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 7,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:19:03"
+    },
+    {
+        "id": 8,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 8,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:19:03"
+    },
+    {
+        "id": 9,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 40,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:19:50"
+    },
+    {
+        "id": 10,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 41,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:19:50"
+    },
+    {
+        "id": 11,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 42,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:19:50"
+    },
+    {
+        "id": 12,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 43,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:20:49"
+    },
+    {
+        "id": 13,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 44,
+        "id_member": 15,
+        "order_date": "2018-05-29 16:20:49"
+    },
+    {
+        "id": 14,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 3,
+        "seat": 30,
+        "id_member": 15,
+        "order_date": "2018-05-29 17:48:55"
+    },
+    {
+        "id": 15,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 3,
+        "seat": 31,
+        "id_member": 15,
+        "order_date": "2018-05-29 17:48:55"
+    },
+    {
+        "id": 16,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 4,
+        "seat": 5,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 17,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 4,
+        "seat": 6,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 18,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 4,
+        "seat": 7,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 19,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 5,
+        "seat": 1,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 20,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 5,
+        "seat": 2,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 21,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 5,
+        "seat": 3,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 22,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 5,
+        "seat": 4,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 23,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 5,
+        "seat": 5,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 24,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 6,
+        "seat": 10,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 25,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 6,
+        "seat": 11,
+        "id_member": 15,
+        "order_date": "2018-05-30 14:29:20"
+    },
+    {
+        "id": 28,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 1,
+        "seat": 90,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 29,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 2,
+        "seat": 1,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 30,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 2,
+        "seat": 2,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 31,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 2,
+        "seat": 3,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 32,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 3,
+        "seat": 1,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 33,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 3,
+        "seat": 2,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 34,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 3,
+        "seat": 3,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 35,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 4,
+        "seat": 1,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 36,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 4,
+        "seat": 2,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 37,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 4,
+        "seat": 3,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 38,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 7,
+        "seat": 1,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 39,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 7,
+        "seat": 2,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 40,
+        "cf": 0,
+        "id_movie": 0,
+        "quantity": 1,
+        "id_session": 7,
+        "seat": 3,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 41,
+        "cf": 1,
+        "id_movie": 15,
+        "quantity": 10,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 15,
+        "order_date": "2018-06-05 14:12:59"
+    },
+    {
+        "id": 43,
+        "cf": 1,
+        "id_movie": 15,
+        "quantity": 10,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 1,
+        "order_date": "2018-06-05 16:14:55"
+    },
+    {
+        "id": 44,
+        "cf": 1,
+        "id_movie": 14,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 2,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 45,
+        "cf": 1,
+        "id_movie": 14,
+        "quantity": 3,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 5,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 46,
+        "cf": 1,
+        "id_movie": 14,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 13,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 47,
+        "cf": 1,
+        "id_movie": 13,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 2,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 48,
+        "cf": 1,
+        "id_movie": 13,
+        "quantity": 1,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 3,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 49,
+        "cf": 1,
+        "id_movie": 71,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 3,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 50,
+        "cf": 1,
+        "id_movie": 14,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 3,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 51,
+        "cf": 1,
+        "id_movie": 74,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 4,
+        "order_date": "2018-06-05 16:25:38"
+    },
+    {
+        "id": 52,
+        "cf": 1,
+        "id_movie": 75,
+        "quantity": 2,
+        "id_session": 0,
+        "seat": 0,
+        "id_member": 4,
+        "order_date": "2018-06-05 16:25:38"
+    }
+]
+
+        datas.sort((a,b) => a['order_date'] > b['order_date']);
+        console.log(datas);
+        // let orderBy = order_date;
+        function reduce(datas, orderBy){
+            datas.sort((a,b) => a[orderBy] > b[orderBy]);
+            datas = datas.reduce((a,x) => {
+                let l = a.length;
+                let lastObj = a[l - 1];
+                if (lastObj === undefined || x[orderBy] !== lastObj[orderBy]) {
+                    let obj = {};
+                    obj[orderBy] = x[orderBy];
+                    delete x[orderBy];
+                    obj.datas = [x]
+                    a.push(obj);
+                } else if (x[orderBy] === lastObj[orderBy]) {
+                    lastObj.datas.push(x);
+                }
+                return a;
+            },[])
+            return datas;
+        }
+
+        let datas_1 = reduce(datas,"order_date");
+        console.log(datas_1);
+        // let ar0 = this.state.cffilms.slice(0);
+        // console.log("init",ar0)
+        // console.log("state",this.state);
+        // let cffilms = this.state.cffilms;
+        // let ar1 = cffilms.reduce((a, x) => {
+        //     let l = a.length;
+        //     let lastObj = a[l-1];
+        //     let order_date = x.order_date.slice(0,x.order_date.indexOf(' '));
+        //     delete x.order_date;
+        //     delete x.id_member;
+        //     delete x.id;
+        //     if (lastObj === undefined) {
+        //         let obj = {
+        //             order_date: order_date,
+        //             orders: [x]
+        //         };
+        //         a.push(obj);
+        //     }else if (order_date === lastObj.order_date) {
+        //         // let ar = lastObj.orders;
+        //         // ar.push(x);
+        //         lastObj.orders.push(x);
+        //     }else if(order_date !== lastObj.order_date){
+        //         let obj = {
+        //             order_date: order_date,
+        //             orders: [x]
+        //         };
+        //         a.push(obj);
+        //     }
+        //     return a;
+        // },[]);
+        // cffilms = ar1;
+        // console.log("first: ", ar1);
+        // let ar2 = cffilms.map(order => {
+        //     let orders = order.orders.reduce((a,x) => {
+        //         let l = a.length;
+        //         let lastObj = a[l - 1];
+        //         // let order_date = x.order_date.slice(0, x.order_date.indexOf(' '));
+        //         // let id_movie = x.id_movie;
+        //         // delete x.order_date;
+        //         // delete x.id_member;
+        //         // delete x.id;
+        //         if (lastObj === undefined) {
+        //             let obj = {
+        //                 id_movie: x.id_movie,
+        //                 quantity: x.quantity
+        //             };
+        //             a.push(obj);
+        //         } else if (x.id_movie === lastObj.id_movie) {
+        //             // let ar = lastObj.orders;
+        //             // ar.push(x);
+        //             lastObj.quantity += x.quantity;
+        //         } else if (x.id_movie !== lastObj.id_movie) {
+        //             let obj = {
+        //                 id_movie: x.id_movie,
+        //                 quantity: x.quantity
+        //             };
+        //             a.push(obj);
+        //         }
+        //         return a;
+        //     },[]);
+        //     order.orders = orders;
+        //     return order;
+        // })
+        // cffilms = ar2;
+        // console.log("second: ", ar2);
+
+
+        // let films = this.state.films;
+        // let arr1 = films.reduce((a, x) => {
+        //     let l = a.length;
+        //     let lastObj = a[l - 1];
+        //     let order_date = x.order_date.slice(0, x.order_date.indexOf(' '));
+        //     delete x.order_date;
+        //     delete x.id_member;
+        //     delete x.id;
+        //     if (lastObj === undefined || order_date !== lastObj.order_date) {
+        //         let obj = {
+        //             order_date: order_date,
+        //             orders: [x]
+        //         };
+        //         a.push(obj);
+        //     } else if (order_date === lastObj.order_date) {
+        //         // let ar = lastObj.orders;
+        //         // ar.push(x);
+        //         lastObj.orders.push(x);
+        //     }
+        //     return a;
+        // }, []);
+        // films = arr1;
+        // console.log("first: ", arr1);
+        // let arr2 = films.map(order => {
+        //     let orders = order.orders.reduce((a, x) => {
+        //         let l = a.length;
+        //         let lastObj = a[l - 1];
+        //         if (lastObj === undefined || x.id_session !== lastObj.id_session) {
+        //             let obj = {
+        //                 id_session: x.id_session,
+        //                 quantity: x.quantity,
+        //                 seats: [x.seat]
+        //             };
+        //             a.push(obj);
+        //         } else if (x.id_session === lastObj.id_session) {
+        //             // let ar = lastObj.orders;
+        //             // ar.push(x);
+        //             lastObj.quantity += x.quantity;
+        //             lastObj.seats.push(x.seat);
+        //         }
+        //         return a;
+        //     }, []);
+        //     order.orders = orders;
+        //     return order;
+        // })
+        // films = arr2;
+        // console.log("second: ", arr2);
+        // console.log("final state: ", this.state);
+    </script>
+</body>
+</html>

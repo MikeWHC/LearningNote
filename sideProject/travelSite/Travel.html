@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel.com</title>
+    <style>
+        body, html{
+            padding: 0;
+            margin: 0;
+            /* overflow: hidden; */
+        }
+        
+        #navbar{
+            display: none;
+        }
+        .btn{
+            background-color: indianred;
+            width: 50px;
+            height: 50px;
+            /* display: block; */
+            border-radius: 10px;
+            cursor: pointer;
+            float: right;
+            transition: all .2s ease-in-out;
+            display: none;
+        }
+        .nav{
+            transform: scale(1);
+        }
+        @media screen and (max-width: 760px) {
+            .btn{
+                display: block;
+            }
+            .nav{
+                transform: scale(1,0);
+                background-color: lightpink;
+                position: absolute;
+                right: 0;
+                top: 74px;
+                transform-origin: right top;
+            }
+            #nav .nav li{
+                float: none;
+                display: block;
+            }
+            #nav .nav a{
+                text-align: right;
+                font-size: 36px;
+            }
+            #navbar:checked ~ .nav{
+                transform: scale(1,1);
+                transition: all .2s ease-in-out;
+                transform-origin: right top;
+                opacity: .8;
+                z-index: 10;
+            }
+            /* 變形中心要在變化前後都加，否則變化中變形中心也在改變 */
+        }
+        
+        #nav{
+            background-color: rgba(255, 255, 255, .6);
+            height: 71px;
+            /* padding: 20px 30px; */
+            position: fixed;
+            width: 100%;
+            z-index: 10;
+        }
+        #nav ul{
+            margin: 0 auto;
+            padding: 0;
+            overflow: auto;
+            width: 60%;
+        }
+        #nav li{       
+            list-style-type: none;
+            float: right;  
+            margin-left: calc(40% / 3) ;
+            width: 15%;
+        }
+        #nav li:last-child{
+            margin-left: 0;
+        }
+        #nav li a, #nav li a:active{
+            text-align: center;
+            padding: 20px 30px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            display: block;
+            color: white;   
+            font-weight: bold;            
+        }
+        #nav li a:hover{
+            color: #333;
+        }
+        #nav li a:after{
+            content: "";
+            width: 30%;
+            height: 0;
+            border-bottom: 3px solid white;
+            display: block;
+            margin: 0 auto;
+        }
+        #banner{
+            /* margin-top: 50px; */
+            height: calc(100vh);
+            /* background: lavender url(AmeriCan-Adventures-hiking-with-a-view.jpg) center center/cover no-repeat; */
+            background-color: #111;
+            overflow: hidden;
+            width: 100%;
+        }
+        #banner h1{
+            text-transform: uppercase;
+            text-align: center;
+            height: 72px;
+            font-size: 72px;
+            line-height: 72px;
+            position: absolute;
+            width: 60%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            /* margin: -36px -20%; */
+            /* margin單位%是對於父元素的"寬度" */
+            letter-spacing: 30px;
+            color: white;
+            font-family: 'Bahnschrift';
+        }
+        #sctn1{
+            height: 100vh;
+            background-color: wheat;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="nav">
+        <input type="checkbox" id="navbar">
+        <label class="btn" for="navbar"></label>
+        <ul class="nav">
+            <li><a href="">Home</a></li>
+            <li><a href="">Tour</a></li>
+            <li><a href="">Pricing</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </div>
+    <div id="banner">
+        <h1>travel</h1>
+    </div>
+    <div id="sctn1"></div>
+</body>
+</html>

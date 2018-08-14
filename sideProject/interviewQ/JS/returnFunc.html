@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>return function</title>
+</head>
+<body>
+    <pre>
+        Question: How would you make this work ? 
+
+        add(2, 5); // 7 
+        add(2)(5); // 7
+    </pre>
+    <script>
+        let add = (a,b) => {
+            if(b !== undefined) return a + b;
+            return (c) => a + c;
+        }
+        document.write("add(2, 5) = " + add(2, 5) + "<br>");
+        document.write("add(2)(5) = " + add(2)(5));
+        
+    </script>
+</body>
+</html>

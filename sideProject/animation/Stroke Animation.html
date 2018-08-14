@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stroke Animation</title>
+    <style> 
+        .btn{
+            stroke: black;
+            stroke-width: 2px;
+            fill: none;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 400;
+            transition: all 1.5s ease-in-out; 
+        }
+        svg:hover .btn{
+            stroke-dashoffset: 200;
+            transition: all 1.5s ease-in-out; 
+        }
+        circle{
+            stroke: black;
+            stroke-width: 2px;
+            fill:none;
+            stroke-dasharray: 20 400;
+            stroke-dashoffset: 840;
+            transition: all 1.5s ease-in-out;
+        }
+        svg:hover circle{
+            stroke-dashoffset: 420;
+            transition: all 1.5s ease-in-out;
+        }
+        .frame{
+            width: 500px;
+            height: 500px;
+            background-color: lightblue;
+            box-shadow: 0 5px 10px #333;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -250px -250px;
+        }
+        body{
+            background-color: lightcoral;
+        }
+        svg{
+            background-color: lemonchiffon;
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <svg width="300" height="300" viewBox="-5,-5,300,300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <polyline class="btn" points="0,0 50,0 50,50 0,50 0,0" />
+            <circle cx="100" cy="100" r="50" style="" />
+        </svg>
+
+    </div>
+    
+</body>
+</html>

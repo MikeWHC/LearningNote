@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>touch</title>
+    <style>
+        body{
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+
+        }
+        #canvas{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }        
+        .spirit {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }   
+    </style>
+</head>
+<body>
+    <div id="canvas">
+
+    </div>
+
+    <script>
+        var canvas = document.getElementById("canvas"),
+       spirit, startX, startY;
+ 
+        function touchStart(event) {
+            event.preventDefault();
+            if (spirit ||! event.touches.length) return;
+            var touch = event.touches[0];
+            startX = touch.pageX;
+            startY = touch.pageY;
+            spirit = document.createElement("div");
+            spirit.className = "spirit";
+            spirit.style.left = startX - 25 + "px";
+            spirit.style.top = startY - 25 + "px";
+            console.log(startX, startY);
+            canvas.appendChild(spirit);
+        }
+        canvas.addEventListener("touchstart", touchStart, false);
+
+        function touchMove(event) {
+            event.preventDefault();
+            if (!spirit || !event.touches.length) return;
+            var touch = event.touches[0],
+                x = touch.pageX - startX,
+                y = touch.pageY - startY;
+            console.log(touch.pageX,startX)
+            spirit.style.webkitTransform = 'translate(' + x + 'px, ' + y + 'px)';     
+        }
+        
+        canvas.addEventListener("touchmove", touchMove, false);
+
+        function touchEnd(event) {
+         if (!spirit) return;
+            canvas.removeChild(spirit);
+            spirit = null;
+        }
+        
+        canvas.addEventListener("touchend", touchEnd, false);
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cube2</title>
+    <style>
+        .wrap {
+            position: absolute;
+            left: 500px;
+            top: 500px;
+	perspective: 800px;
+	perspective-origin: 50% 100px;
+}
+        .cube {
+	position: relative;
+	width: 200px;
+    transform-style: preserve-3d;
+    transition: all 1.5s;
+}
+.cube div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+}
+.border{
+    border: 1px solid black;
+    text-align: center;
+}
+.back {
+    transform: translateZ(-100px) rotateY(180deg);
+    
+}
+.right {
+	transform: rotateY(-270deg) translateX(100px);
+	transform-origin: top right;
+}
+.left {
+	transform: rotateY(270deg) translateX(-100px);
+	transform-origin: center left;
+}
+.top {
+	transform: rotateX(-90deg) translateY(-100px);
+	transform-origin: top center;
+}
+.bottom {
+	transform: rotateX(90deg) translateY(100px);
+	transform-origin: bottom center;
+}
+.front {
+	transform: translateZ(100px);
+}
+.cube:hover{
+    transform: rotateX(45deg);
+    transition: 3s;
+}
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="cube">
+            <div class="front border">front</div>
+            <div class="back border">back</div>
+            <div class="top border">top</div>
+            <div class="bottom border">bottom</div>
+            <div class="left border">left</div>
+            <div class="right border">right</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>path</title>
+    <script>
+        
+
+        function draw() {
+                var canvas = document.getElementById('canvas');
+                if (canvas.getContext) {
+
+                    var ctx = canvas.getContext('2d');
+                    
+                    //初始化
+                    ctx.beginPath();
+                    //起始位置
+                    ctx.moveTo(50,50);
+                    ctx.lineTo(50,100);
+                    ctx.lineTo(100,100);
+                    ctx.lineTo(60,90);
+                    ctx.lineTo(50,50);
+                    //直接closePath()也可以閉合
+                    // ctx.closePath();
+                    //邊框圖形
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.moveTo(150, 150);
+                    ctx.lineTo(100, 150);
+                    ctx.lineTo(150, 200);
+                    ctx.closePath();
+                    //填滿圖形
+                    ctx.fill();
+                }
+            }
+        
+    </script>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="1500" height="1500"></canvas>
+    
+</body>
+</html>

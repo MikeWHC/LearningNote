@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IIFE前的分號</title>
+</head>
+<body>
+    <script>
+    //IIFE前加分號為了做分隔，避免壓縮程式碼後編譯出錯    
+    var test=function(a){
+        alert(a)
+        return function(c){
+            alert(c)
+        }
+    }
+    (function(b){
+        console.log(b)
+    })(1);
+    (function(b){
+        console.log(b)
+    })(1)
+    //L19後面不加分號會錯誤
+    </script>
+</body>
+</html>

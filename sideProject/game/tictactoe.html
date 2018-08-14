@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TicTacToe</title>
+    <style>
+        body, html{
+            margin: 0;
+            padding: 0;
+        }
+        .bigbox{
+            /* margin: 50px auto; */
+            display: flex;
+            flex-flow: wrap;
+            width: 450px;
+            height: 450px;
+
+        }
+        .box{
+            box-sizing: border-box;
+            border: 3px solid black;
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            font-size: 87px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .result{
+            width: 100px;
+            height: 30px;
+            background-color: #ccc;
+            color: #333;
+            line-height: 30px;
+            text-align: center;
+        }
+        button{
+            margin: 30px 0;
+            height: 30px;
+            width: 100px;
+            box-sizing: border-box;
+            font-size: 14px;            
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="bigbox">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <div class="result"></div>
+    <button id="btn">Reset</button>
+    <script>
+        let box = document.getElementsByClassName('box')
+        let bigBox = document.getElementsByClassName('bigbox')[0];
+        let result = document.getElementsByClassName('result')[0];
+        let btn = document.getElementById('btn');
+        let ar = [[,,],[,,],[,,]];        
+        let t = 0, i;
+        let func = function (e) {
+                let x = parseInt(e.clientX / 150);
+                let y = parseInt(e.clientY / 150);
+                i = x + y * 3;
+                // console.log(e);
+                if (t == 0) {
+                    // console.log(i);        
+                    box[i].innerHTML = 'X';
+                    // console.log('k: ' + k);
+                    ar[parseInt(i / 3)][i % 3] = 0;
+                    t++;
+                } else if (t == 1) {
+                    box[i].innerHTML = 'O';
+                    // console.log(i);
+                    // console.log('k: ' + k);
+                    ar[parseInt(i / 3)][i % 3] = 1;
+                    t = 0;
+                }
+
+                if (
+                    ar[0].join('') == '111' ||
+                    ar[1].join('') == '111' ||
+                    ar[2].join('') == '111' ||
+                    '' + ar[0][0] + ar[1][0] + ar[2][0] == '111' ||
+                    '' + ar[0][1] + ar[1][1] + ar[2][1] == '111' ||
+                    '' + ar[0][2] + ar[1][2] + ar[2][2] == '111' ||
+                    '' + ar[0][0] + ar[1][1] + ar[2][2] == '111' ||
+                    '' + ar[0][2] + ar[1][1] + ar[2][0] == '111'
+                ) {
+                    result.innerHTML = 'O win';
+                } else if (
+                    ar[0].join('') == '000' ||
+                    ar[1].join('') == '000' ||
+                    ar[2].join('') == '000' ||
+                    '' + ar[0][0] + ar[1][0] + ar[2][0] == '000' ||
+                    '' + ar[0][1] + ar[1][1] + ar[2][1] == '000' ||
+                    '' + ar[0][2] + ar[1][2] + ar[2][2] == '000' ||
+                    '' + ar[0][0] + ar[1][1] + ar[2][2] == '000' ||
+                    '' + ar[0][2] + ar[1][1] + ar[2][0] == '000'
+                ) {
+                    result.innerHTML = 'X win';
+                } else {
+                    result.innerHTML = '';
+                }
+                
+                if(result.innerHTML){
+                    bigBox.removeEventListener('click', func);
+                }                
+            };
+        bigBox.addEventListener('click', func);
+        btn.addEventListener('click', function(){
+            ar = [[, ,], [, ,], [, ,]];
+            for(i of box){
+                i.innerHTML = '';
+            } 
+            result.innerHTML = '';
+            bigBox.addEventListener('click', func);
+        })
+        // function func() {
+        //         console.log(t);
+        //         console.log(event);
+        //         if (t == 0) {
+        //             this.innerHTML = 'X';
+        //             // console.log(i);
+        //             console.log('k: ' + k);
+        //             // ar[parseInt(i/3)][i%3] = 0;
+        //             t++;
+        //         } else if (t == 1) {
+        //             this.innerHTML = 'O';
+        //             // console.log(i);
+        //             console.log('k: ' + k);
+        //             // ar[parseInt(i / 3)][i % 3] = 1;
+        //             t = 0;
+        //         }
+        //     }
+        //     let func1 = (function () {
+        //             // console.log('i: ' + i);
+        //             let k = 0;
+        //             return function () {
+        //                 // let x = k;
+        //                 // console.log('i: ' + i);
+        //                 console.log('k: ' + k);
+        //                 // console.log('x: ' + x);
+        //                 box[k].addEventListener('click', func);
+        //                 k++;
+        //             }
+        //         })();
+        // for(i=0;i<9;i++){            
+        //     func1();
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+</head>
+<body>
+    <script>
+        
+        for(let i=5;i>=0;i--){
+            console.log('let i= '+i)
+            setTimeout(() => {
+                console.log(i===0?"go!":i)
+            }, (5-i)*1000);
+        } //5 4 3 2 1 
+        for (i = 5; i >= 0; i--) {
+            console.log('i= '+i)
+                setTimeout(() => {
+                    console.log(i === 0 ? "go!" : i)
+                }, (5 - i) * 1000);
+            }//-1 * 6
+    </script>
+</body>
+</html>

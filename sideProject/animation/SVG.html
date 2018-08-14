@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG</title>
+    <style>
+        body, html{
+            padding: 0;
+            margin: 0;
+            color: #f89a20
+        }
+        svg{
+            transform: scale(.5,.5);
+            animation: rot 2s linear infinite forwards;
+        }
+        @keyframes rot{
+            0%{transform:rotate(0deg) scale(.5,.5)}
+            50%{transform:rotate(180deg) scale(1,1) translateX(-30px)}
+            100%{transform:rotate(360deg) scale(.5,.5) translateX(-300px)}
+        }
+    </style>
+</head>
+<body>
+    <!-- <svg width="100%" height="500px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="layer01">
+        <rect id="a3" x="52" y="54" fill="#FF6CC4" width="75" height="75" />
+        <circle id="a2" fill="#5CD5FF" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="109.25" cy="118" r="40.75" />
+        <polygon id="a1" fill="#FFB65F" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" points="109.25,112.941 
+            129.186,147.471 149.121,182 109.25,182 69.378,182 89.314,147.471     " />
+    </g>
+    <g id="layer02">
+        <ellipse fill="#f24" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="75" cy="196.375" rx="47" ry="37.625"
+        />
+    </g>
+    </svg> -->
+    
+    <svg width="500px" height="500px"
+         viewBox="" version="1.1"
+         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect x="0" y="0" width="100%" height="100%" style="" fill="none" stroke="none" stroke-width="3"/>
+        <polyline points="250,0 305,195 500,250 305,305 250,500 195,305 0,250 195,195 250,0" style="" stroke="none" stroke-width="5" fill="#f89a20"/>    
+    </svg>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slice Transition</title>
+    <style>
+        body{
+            background-color: #ccc;
+        }
+        .frame{
+            height: 400px;
+            width: 400px;
+            background: url(https://100dayscss.com/codepen/slice-image-1.jpg) center center/cover no-repeat;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -200px -200px;
+            box-shadow: 0 5px 10px #333;
+            overflow: hidden;
+            /* 使照片移出方塊不會被看見 */
+        }
+        .slice{
+            height: 400px;
+            width: 50px;
+            /* display: inline-block; */
+            /* 用float比較省事，因為裡面還有文字，若設font-size=0要改比較多東西 */
+            float: left;
+            background: url(https://100dayscss.com/codepen/slice-image-2.jpg) center center/400px 400px no-repeat;
+            transition: all 1s ease-in-out;
+        }
+        .slices:hover h1{
+            transform: translateX(40px);
+            transition: all 1s ease-in-out ;
+            opacity: 0;
+        }
+        .slices:hover h3{
+            transform: translateX(-40px);
+            transition: all 1s ease-in-out ;
+            opacity: 0;
+        }
+        .slices .slice:nth-child(2n){
+            transform: translateY(40px);
+            
+        }
+        .slices .slice:nth-child(2n+1){
+            transform: translateY(-40px);
+        }
+        .slices:hover .slice{
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 1s ease-in-out ;
+        }
+        /* bg-size用%會不精確，!!記得用負數!!*/
+        .slice.slice1{
+            background-position: 0 0;
+            opacity: 0;
+            
+        }
+        .slice.slice2{
+            background-position: -50px 0;
+            opacity: 0;
+        }
+        .slice.slice3{
+            background-position: -100px 0;
+            opacity: 0;
+        }
+        .slice.slice4{
+            background-position: -150px 0;
+            opacity: 0;
+        }
+        .slice.slice5{
+            background-position: -200px 0;
+            opacity: 0;
+        }
+        .slice.slice6{
+            background-position: -250px 0;
+            opacity: 0;
+        }
+        .slice.slice7{
+            background-position: -300px 0;
+            opacity: 0;
+        }
+        .slice.slice8{
+            background-position: -350px 0;
+            opacity: 0;
+        }
+        .text{
+            position: absolute;
+            width: 100%;
+            top: 140px;
+            /* height: 150px; */
+            text-align: center;
+            /* margin: -58.5px 0; */
+
+        }
+        h1, h3{
+            margin: 0;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            transform: translateX(0);
+            transition: all 1s ease-in-out ;
+            text-shadow: 2px 2px 2px #333;
+        }
+        h1{
+            font-size: 56px;
+            
+        }
+        h3{
+            font-size: 48px;
+            
+        }
+        .slices{
+            height: 400px;
+            width: 400px;            
+            /* font-size: 0; */
+
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="frame">
+        <div class="slices">
+            <div class="slice slice1"></div>
+            <div class="slice slice2"></div>
+            <div class="slice slice3"></div>
+            <div class="slice slice4"></div>
+            <div class="slice slice5"></div>
+            <div class="slice slice6"></div>
+            <div class="slice slice7"></div>
+            <div class="slice slice8"></div>
+            <div class="text">
+                <h1>Slice</h1>
+                <h3>Transition</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

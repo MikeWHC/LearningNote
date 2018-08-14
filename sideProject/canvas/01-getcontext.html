@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getcontext</title>
+    <script>
+        //視窗載入時
+        //or 在body上加onload="draw()"
+        window.onload = function(){
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+
+                ctx.fillStyle = "rgb(0,0,150)"; //屬性，設定字串
+                ctx.fillRect(0, 0, 150, 150); // 方法，給座標(左上角0,0)和長寬
+
+                ctx.fillStyle = "rgba(0, 150, 0, 0.5)";
+                ctx.fillRect(50, 100, 200, 200);
+
+                ctx.fillStyle = "rgb(200,0,0)";
+                ctx.fillRect(10, 10, 55, 50);
+
+                ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+                ctx.fillRect(30, 30, 55, 50);
+        };
+
+        /*function draw() {
+                var canvas = document.getElementById('canvas');
+                if (canvas.getContext) {
+
+                    var ctx = canvas.getContext('2d');
+
+                    //...draw here
+                } else {
+                    // canvas-unsupported code here
+                }
+            }
+        */
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="1500" height="1500"></canvas>
+    
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cube</title>
+    <!-- <link rel="stylesheet" href="cube.css"> -->
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+  background-color: #eee; }
+
+.frame {
+  background-color: #ccc;
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -250px;
+  padding: 30px;
+  perspective: 76em;
+  perspective-origin: 24% 33%;
+    transform: scale(1.5);
+}
+label{
+    width: 250px;
+    height: 50px;
+    background-color: pink;
+    display: block;
+    /* position: absolute; */
+    float: right;
+    margin: 10px;
+    right: 0;
+    text-align: center;
+    font-size: 32px;
+    line-height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    cursor: pointer;
+    /* top: 0; */
+    display: none;
+}
+.cube{
+    transform-style: preserve-3d;
+    transition: all 1s;
+    transform-origin: 100px 100px;
+    animation: spin 10s 3;
+}
+#top1:checked ~ .cube{
+    transform: rotateX(-90deg);
+}
+#bottom1:checked ~ .cube{
+    transform: rotateX(90deg);
+}
+#right1:checked ~ .cube{
+    transform: rotateY(-90deg);
+}
+#left1:checked ~ .cube{
+    transform: rotateY(90deg);
+}
+.cube:hover{
+    transform: rotateY(-90deg);
+    transform-origin: 100px 100px;
+}
+input{
+    display: none;
+}
+.sf {
+  font-size: 32px;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  color: transparent;
+  /* perspective: 50px; */
+  position: absolute;
+  /* border: 1px solid black; */
+  /* opacity: .5; */
+}
+
+  .sf.top {
+      transform: rotateX(90deg) translateZ(100px);
+    background-color: palegoldenrod;
+    /* transform: translate3d(0, -400px, 0) rotateX(30deg); */
+    /* transform-origin: 50% bottom; */
+    background: url(1519721617052.jpg) center center/cover no-repeat;
+}
+    
+  .sf.front {
+    background-color: peru; 
+    transform: translate3d(0,0,100px);
+    background: url(1519721608954.jpg) center center/cover no-repeat;
+}
+  .sf.left {
+    background-color: plum; 
+    transform: rotateY(-90deg) translateZ(100px);
+    background: url(1519721611427.jpg) center center/cover no-repeat;
+}
+  .sf.bottom {
+    background-color: palegreen; 
+    transform: rotateX(-90deg) translateZ(100px);
+    background: url(1519721613906.jpg) center center/cover no-repeat;
+}
+  .sf.right {
+    background-color: oldlace; 
+    transform: rotateY(90deg) translateZ(100px);
+    background: url(1519721615457.jpg) center center/cover no-repeat;
+}
+@keyframes spin{
+    20%{transform: rotateX(-90deg);}
+    40%{transform: rotateX(90deg);}
+    60%{transform: rotateY(-90deg);}
+    80%{transform: rotateY(90deg);}
+    100%{transform: rotate(0deg);}
+}
+    </style>
+</head>
+<body>
+    <div class="frame">
+
+        <input type="radio" name="tab" id="top1">
+        <input type="radio" name="tab" id="front1">
+        <input type="radio" name="tab" id="bottom1">
+        <input type="radio" name="tab" id="right1">
+        <input type="radio" name="tab" id="left1">
+        <div class="cube">
+            <div class="sf front">Front</div>
+            <div class="sf top">Top</div>
+            <div class="sf bottom">Bottom</div>
+            <div class="sf left">Left</div>
+            <div class="sf right">Right</div>
+        </div>
+        
+        <label for="top1">top</label>
+        
+        <label for="front1">front</label>
+        <label for="bottom1">bottom</label>
+        <label for="right1">right</label>
+        <label for="left1">left</label>
+    </div>
+</body>
+</html>
