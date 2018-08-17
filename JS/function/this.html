@@ -10,6 +10,121 @@
 
 <body>
     <script>
+        // this綁定與函數的呼叫方式有關
+
+        // **四種函數呼叫(調用)的方式(call/invoke)
+        // 1. 一般函式
+        // this 指向全域物件
+        // 但在嚴謹模式指向call傳入的第一個參數
+
+        // 2. 物件方法 => obj.method()
+        // this 指向原物件(obj)
+
+        // 3. 建構函式 => new F()
+        // this 指向new 出來的新物件
+
+        // 4. 間接函式 => call/apply/bind
+        // this指向這三種方法傳入的第一個參數
+
+        // **巢狀函式
+        const obj = {
+            a: 1
+        }
+
+        function outter() {
+
+            function inner() {
+                console.log(this)
+            }
+
+            inner()
+        }
+        outter.call(obj) //undefined
+
+        // **回呼函式(callback function) => setTimeout也是
+        function test(cb) {
+            cb();
+        }
+        test.call(obj, function () {
+            console.log(this)
+        }); // window
+
+        // 巢狀跟回呼的情形很像，回呼相當於一般函式呼叫，且是在全域範圍
+        // 所以就算外面的函式有綁定this，內部函式或回呼函式的this仍然指向global
+        // 解決方法有三
+        // 1. 用變數將this存起來，利用範圍鍊(Scope Chain)的特性，或是當參數傳入
+        function test(cb) {
+            let that = this;
+            cb(that);
+        }
+        test.call(obj, function (that) {
+            console.log(that)
+        }); // obj
+
+        // 2. call(this)
+        function test(cb) {
+            cb.call(this);
+        }
+        test.call(obj, function () {
+            console.log(this)
+        }); // obj
+
+        // 3. bind(this)
+        function test(cb) {
+            let newCb = cb.bind(this);
+            newCb();
+        }
+        test.call(obj, function () {
+            console.log(this)
+        }); // obj
+
+        // **箭頭函式(Arrow Function)
+        // 自動bind(this)
+        function func() {
+            setTimeout(() => {
+                console.log(this)
+            }, 2000)
+        }
+        func.call(obj); // obj
+
+        // **陣列裡的函式(因為函式也是物件，道理同呼叫物件方法)
+        // 函式中arguments物件同樣道理
+        const a = []
+        const func = function () {
+            console.log(this)
+        }
+        a.push(func)
+        a[0]() //指向a
+
+        // **事件回呼
+        // this指向註冊的元素，但內部函式則沒有
+        element.addEventListener('click', function(){
+            console.log(this); // element
+            function inner(){
+                console.log(this)
+            };
+            inner(); // window
+        })
+        //
+        function other(){
+            console.log(this)
+        }
+        element.addEventListener('click', other); // element
+        //        
+        let obj = {
+            method(){
+                console.log(this);
+            }
+        }
+        obj.method(); // obj
+        element.addEventListener('click', obj.method); // element
+        element.addEventListener('click', function(){
+            obj.method(); // obj 
+        })
+        element.addEventListener('click', () => console.log(this)); // window
+
+
+        // **weird part
         function a() {
             console.log(this);
             this.newVariable = 'hello';
@@ -37,8 +152,6 @@
         }
         obj.greeting();
         console.log(name); // Opus
-
-
     </script>
 </body>
 

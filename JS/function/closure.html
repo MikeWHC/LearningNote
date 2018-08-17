@@ -4,15 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>closure</title>
+    <title>Closure</title>
 </head>
 <body>
     <script>
-        function outter(){
-            return function(){
-                
-            }
-        }
+        function outter(outerParam, callback){
+            let outerParam2 = "在父函數中宣告(let)，未傳入的參數";
+            callback(outerParam);
+            
+            var outerParam3 = "在父函數中宣告(var)，未傳入的參數";
+        };
+        let inner = function(outerParam){
+            alert(outerParam);
+            //console.log("let/未傳入", outerParam2) //not defined
+            //console.log("var/未傳入", outerParam3) //not defined
+        };
+        outter("我是父函數傳入的參數", inner);
+
+
+        /*******/
+        const message = "呼叫外部函式";
+        let outter2 = function(message2){
+            console.log("message: " + message);
+            console.log("message2: " + message2);
+        }; //沒加分號會出錯
+
+        (function(){
+            const message2 = "範圍外的變數"; // not defined
+            outter2(message); // 呼叫外部函式 呼叫外部函式
+            outter2(message2); //呼叫外部函式 範圍外的變數
+            outter2(); // message2 -> undefined(未傳入宣告的參數)
+        })();
+        
+        alert(aaa); // Uncaught ReferenceError: aaa is not defined
     </script>
 </body>
 </html>
