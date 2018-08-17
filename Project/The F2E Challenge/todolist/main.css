@@ -1,0 +1,97 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  font-family: '微軟正黑體';
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.container {
+  background-color: #E1E1E1;
+  border: 1px solid black;
+  box-shadow: 2px 2px 2px #ccc;
+  overflow: auto; }
+  .container #head {
+    background-color: #4A90E2;
+    position: relative; }
+    .container #head .tab {
+      padding: 10px 0;
+      box-sizing: border-box;
+      color: #ffffff;
+      font-size: 24px;
+      position: relative;
+      font-weight: 700;
+      cursor: pointer; }
+      .container #head .tab:hover {
+        color: #00408B; }
+      .container #head .tab.focus {
+        color: #00408B; }
+        .container #head .tab.focus::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          background-color: blue;
+          height: 5px; }
+  .container #body #addTask {
+    background-color: #f2f2f2;
+    margin: 20px 0;
+    border-radius: 5px; }
+    .container #body #addTask .row {
+      margin: 10px 0; }
+      .container #body #addTask .row.title {
+        font-size: 16px; }
+      .container #body #addTask .row.btns {
+        margin: 10px 0 0; }
+        .container #body #addTask .row.btns svg {
+          margin: 5px; }
+        .container #body #addTask .row.btns button {
+          font-size: 20px;
+          font-weight: 500; }
+        .container #body #addTask .row.btns .cancel {
+          color: #D0021B;
+          background-color: #fff; }
+          .container #body #addTask .row.btns .cancel:hover {
+            background-color: #ddd; }
+        .container #body #addTask .row.btns .add {
+          background-color: #4A90E2;
+          color: #fff; }
+          .container #body #addTask .row.btns .add:hover {
+            background-color: #609de6; }
+      .container #body #addTask .row.task-name {
+        font-size: 20px; }
+        .container #body #addTask .row.task-name input[type=text] {
+          padding: 5px 8px;
+          font-size: 18px; }
+        .container #body #addTask .row.task-name input[type=checkbox] {
+          width: 20px;
+          height: 20px; }
+        .container #body #addTask .row.task-name svg {
+          color: #ccc;
+          cursor: pointer; }
+          .container #body #addTask .row.task-name svg:hover {
+            color: #333; }
+    .container #body #addTask input {
+      width: 100%; }
+  .container #body #tasks .task {
+    background-color: #F2F2F2; }
+    .container #body #tasks .task input[type=checkbox] {
+      width: 20px;
+      height: 20px; }
+    .container #body #tasks .task svg {
+      color: #ccc; }
+      .container #body #tasks .task svg.ontop {
+        color: #F5A623; }
+      .container #body #tasks .task svg:hover {
+        color: #333; }
+    .container #body #tasks .task.ontop {
+      background-color: #FFF2DC; }
+
+.transition {
+  transition: all .2s; }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
