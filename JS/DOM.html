@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM</title>
+</head>
+
+<body>
+    <script>
+        // nodeType(回傳類型代碼)，node有12種，常見為:
+        // 1. element node(通常用元素、element、HTML代稱)，1
+        // 2. text node，3
+        // 3. comment node，8
+
+        // query
+        document.getElementById()
+        document.getElementsByClassName() // return HTMLCollection
+        document.getElementsByTagName() // return HTMLCollection
+        document.querySelector()
+        document.querySelectorAll() // return NodeList
+        // HTMLCollection沒有forEach可以用，但NodeList有
+        // 可以用for-of loop或是Array.from()
+
+        // traverse
+
+        // parent
+        // parentNode vs parentElement
+        // 大多數兩者相等，因為text_node不能是element_node的父層
+
+        // child
+        // element
+        // children / childElementCount / firstChildElement / lastChildElement        
+        // node
+        // childNodes / firstChild / lastChild / removeChilde / replaceChild / hasChildNodes / appendChild
+
+        // siblings
+        // element
+        // nextElementSibling / previousElementSibling
+        // node
+        // nextSibling / previousSibling
+
+        // change DOM
+        // create
+        // document.createElement()
+        // node.cloneNode()
+        // 建立元素，回傳此元素(但還沒加入DOM tree)
+        // node.innerText / node.textContent
+        // 功能雷同，get/set文字節點，即使打HTML標籤也會變成文字不會被編譯成元素
+        // 注意set會取代原本的child node
+        // 兩者在瀏覽器相容不太一樣，innerText是比較老的用法
+
+        // node.innerHTML
+        // get/set元素節點，HTML標籤會編譯成節點
+        // 避免XSS攻擊，還是建議用textContent
+
+        // document.creatTextNode()
+        // 建立文字節點
+
+        // insert
+        // parentNode.appendChild(newNode)
+        // parentNode.append(newNode or DOMstring)
+        // parentNode.prepend(newNode or DOMstring)
+        // parentNode.insertBefore(newNode, nextSibling)
+        // parentNode.replaceChild(newNode, existingNode)
+
+        // node.insertAdjacentHTML(position, DOM_string) => 像JQuery(sizzle.js)可以解析字串成DOM
+        // node.insertAdjacentText(position, string)
+        // node.insertAdjacentElement(position, newElement)
+        // position有四個值代表不同的插入位置
+        // beforebegin / beforeend / afterbegin / afterend
+
+        // <-- beforebegin -->
+        // <div class="node">
+        //     <-- afterbegin -->
+        //     <div class="inner"></div>
+        //     <-- beforeend -->
+        // </div>
+        // <-- afterend -->
+
+
+        // appendChild vs append
+        // 1. append可以傳入DOMString，appendChild只接受節點
+        // 2. append可以傳多個，appendChild只接受一個節點
+        // 3. append沒有回傳值，appendChild回傳新增的節點
+
+        // fragment 效能較好
+        const text = document.createTextNode('continue reading...')
+        const hr = document.createElement('hr')
+        const fragment = document.createDocumentFragment()
+
+        fragment.appendChild(text)
+        fragment.appendChild(hr)
+        oneElement.appendChild(fragment)
+
+        // remove
+        // parentNode.removeChild(nodeNeedRemoved)
+        // nodeNeedRemoved.remove()
+        // parentNode.innerHTML = '' => 雖然有效但比較不直觀
+
+
+        // window.getComputedStyle(node)
+        // window.getComputedStyle(node).fontSize
+        // window.getComputedStyle(node)['font-size']
+
+        // class
+        // input.classList // return DOMTokenList(array-like)
+        // input.classList.add('new className') // 可接受多個參數
+        // input.classList.replace('old', 'new');
+        // input.classList.contains() // return boolean
+        // input.classList.remove()
+        // input.classList.toggle()
+
+        // input.className = 'new class name'
+        // input.className += ' add new class'
+    </script>
+</body>
+
+</html>

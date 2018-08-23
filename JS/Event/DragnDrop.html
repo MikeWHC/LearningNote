@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sort</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            background-color: #ccc;
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 15px;
+            position: relative;
+        }
+        .list{
+            cursor: pointer;
+            width: 300px;
+            height: 50px;
+            border-radius: 5px;
+            margin: 10px 0;
+            background-color: #333;
+            font-size: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+            user-select: none;
+        }
+        .list.ondrag{
+            position: relative;
+            background-color: #999;
+            color: #333;
+            /* border: 4px solid #999; */
+        }
+        .list.invisible{
+            visibility: hidden;
+        }
+        .list.hovered{
+            background-color: lightgreen;
+        }
+        /* .list:hover{
+            background-color: lightsalmon;
+        } */
+        .coordinate{
+            position: absolute;
+            top: 0;right: 50px;
+            background-color: #ccc;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="list" draggable="true">1</div>
+        <div class="list" draggable="true">2</div>
+        <div class="list" draggable="true">3</div>
+        <div class="list" draggable="true">4</div>
+        <div class="list" draggable="true">5</div>
+        <div class="list" draggable="true">6</div>
+        <div class="list" draggable="true">7</div>
+        <div class="list" draggable="true">8</div>
+        <div class="list" draggable="true">9</div>
+        <div class="list" draggable="true">10</div>
+    </div>
+    <div class="coordinate"></div>
+    <script>
+        let container = document.querySelector('.container'),
+            elOnDrag;
+        // container.addEventListener('mousedown', function(e){
+        //     let list = e.target;
+        //     console.log(e.offsetY)
+        //     if(list.classList.contains('list')) list.classList.add('ondrag');
+        // })
+        // container.addEventListener('mouseup', function(e){
+        //     let list = e.target;
+        //     console.log(e.offsetY)
+        //     if(list.classList.contains('list')) list.classList.remove('ondrag')
+        // })
+        // let mouseY;
+        // container.addEventListener('mousemove', function(e){
+        //     let list = e.target;
+        //     // mouseY = e.
+        //     let coordinate = document.querySelector('.coordinate');
+        //     coordinate.innerHTML = `pageY: ${e.pageY} <br/>
+        //     clientY: ${e.clientY}<br/>
+        //     offsetY: ${e.offsetY}<br/>
+        //     movementY: ${e.movementY}<br/>
+        //     y: ${e.y}<br/>
+        //     screenY: ${e.screenY}<br/>
+        //     layerY: ${e.layerY}<br/>`;
+        //     // if(list.classList.contains('list')) list.style.top = e.clientY - 11 - e.offsetY + 'px';
+        //     // console.log(`${e.pageY} ${e.clientY} ${e.offsetY} ${e.movementY} ${e.y} ${e.screenY} ${e.layerY}`)
+        //     // console.log(e.offsetY)
+        //     // console.log(e.movementY)
+        //     // if(list.classList.contains('list')) 
+        // })
+        container.addEventListener('dragstart', function(e){
+            // e.preventDefault()
+            let target = e.target;
+            elOnDrag = target;
+            target.className += ' ondrag';
+            setTimeout(() => target.classList.replace('ondrag', 'invisible'), 0);
+            console.log('start')
+        })
+        container.addEventListener('dragend', function(e){
+            let target = e.target;
+            target.classList.remove('invisible');
+            console.log('end')
+        })
+        container.addEventListener('dragenter', function(e){
+            e.preventDefault()
+            
+            if(e.target.classList.contains('list')) {
+                console.log('enter: ' + e.target.textContent)
+                e.target.classList.add('hovered');
+            }
+            // console.log('enter: ', e.target)
+        })
+        container.addEventListener('dragleave', function(e){
+            e.preventDefault()
+            if(e.target.classList.contains('list')) {
+                console.log('leave: ' + e.target.textContent)
+                e.target.classList.remove('hovered');
+                
+            }
+                // console.log('leave: ' + e.target.textContent)
+            // console.log('leave: ', e.target)
+            
+        })
+        container.addEventListener('dragover', function(e){
+            e.preventDefault();
+            // console.log('drop: ' + e.target.textContent)
+        })
+        container.addEventListener('drop', function(e){
+            // console.log('drop: ' + e.target.textContent)
+            if(e.target.classList.contains('list')) {
+                console.log('drop: ' + e.target.textContent);
+                e.target.classList.remove('hovered');
+
+                container.insertBefore(elOnDrag, e.target);
+                // e.target.classList.remove('hovered');
+                
+            }
+        })
+    </script>
+</body>
+</html>
