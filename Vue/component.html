@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>component</title>
+    <style>
+        .app {
+            border: 2px solid #ccc;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- v-bind:定義傳入的參數="對應的data" -->
+    <!-- 父傳子  -->
+    <ol class="app app1">
+        <todo-item v-for="(todo, i) in todos" v-bind:todo="todo" v-bind:key="i"></todo-item>
+    </ol>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 將畫面各部分分離成各個元件
+        // 註冊為元件，可重用、好維護
+        // props定義傳入的參數
+        Vue.component('todo-item', {
+            template: '<li>{{todo.text}}</li>',
+            props: ['todo']
+        })
+
+        let app1 = new Vue({
+            el: '.app1',
+            data: {
+                todos: [
+                    {text: '剪頭髮'},
+                    {text: '寫暑假作業'},
+                    {text: '繳罰單'},
+                    {text: '買牛奶'}
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

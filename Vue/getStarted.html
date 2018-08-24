@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>get started with Vue.js</title>
+    <style>
+        .app {
+            border: 2px solid #ccc;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- v-bind:attribute="data" -->
+    <div class="app app1" v-bind:title="title">{{textContent}}</div>
+
+    <!-- v-if="data" -->
+    <div class="app app2">
+        <div v-if="seen">showing if seen equals true, vice versa.</div>
+    </div>
+
+    <!-- v-for="data in datas" -->
+    <ol class="app app3">
+        <li v-for="list in lists">{{list}}</li>
+    </ol>
+
+    <!-- v-on:eventType="method" -->
+    <div class="app app4">
+        <h4>{{message}}</h4>
+        <button v-on:click="reverseMessage">Click to reverse the text above.</button>
+    </div>
+
+    <!-- v-model="data" => two-way binding between input and data -->
+    <div class="app app5">
+        <h4>{{message}}</h4>
+        <input type="text" v-model="message">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // declarative rendering {{}}
+        // directive v-
+        // v-bind:attribute="key"   keep attribute up-to-date with key property on the Vue instance.
+        let app1 = new Vue({
+            el: '.app1',
+            data: {
+                textContent: "Hover me.",
+                title: "here's 'title' attribute in div"
+            }
+        })
+
+        // v-if
+        let app2 = new Vue({
+            el: '.app2',
+            data: {
+                seen: true
+            }
+        })
+
+        // v-for
+        let app3 = new Vue({
+            el: '.app3',
+            data: {
+                lists: [
+                    'apple',
+                    'banana',
+                    'cat'
+                ]
+            }
+        })
+
+        // v-on
+        let app4 = new Vue({
+            el: '.app4',
+            data: {
+                message: 'Hello Vue.js'
+            },
+            methods: {
+                reverseMessage() {
+                    this.message = this.message.split('').reverse().join('');
+                }
+            }
+        })
+
+        // v-model
+        let app5 = new Vue({
+            el: '.app5',
+            data: {
+                message: 'Change me by type in.'
+            }
+        })
+    </script>
+</body>
+
+</html>
