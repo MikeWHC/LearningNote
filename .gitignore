@@ -1,3 +1,5 @@
 company
 .vscode
 Project
+build
+.gradle

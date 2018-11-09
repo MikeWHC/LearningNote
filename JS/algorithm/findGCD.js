@@ -11,3 +11,8 @@ function findGCD(num1, num2){
     }
 	return divisor;
 }
+
+let num1 = 128,
+	num2 = 72;
+
+console.log(findGCD(num1, num2))

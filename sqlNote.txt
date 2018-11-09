@@ -1,0 +1,6 @@
+if the primary key is a set of columns (a composite key), 
+then the foreign key also must be a set of columns that corresponds to the composite key.
+
+SQL中欄位名稱和table名稱不能用雙引號(csv檔匯出時是雙引號)，要是反引號或不加
+
+CREATE VIEW 就像是建立一張假表，代好複雜的查詢條件(多表聯查)，除了查詢沒有其他功能
