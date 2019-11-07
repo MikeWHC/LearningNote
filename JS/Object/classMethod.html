@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>class</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(firstname, lastname){
+                this.firstname = firstname;
+                this.lastname = lastname;
+            }
+            greet(){
+                return 'Hi, ' + this.firstname;
+            }
+            static genderList () {
+                return ['female', 'male']
+            }
+        }
+        let mike = new Person('Mike', 'Wu');
+        mike.genderList() // TypeError: mike.genderList is not a function
+        Person.genderList() // ['female', 'male']
+
+        // Add method
+        Person.prototype.greetInMandarin = () => `嗨!我是${this.lastname + this.firstname}`
+
+        // Add static method
+        Person.countryList = () => ['European', 'African']
+        /* 
+            The method of directly assigning a property to the class as in Class.staticMethod = function(a, b) {...} 
+        works just fine even in ES3, ES4, ES5. Or you could use Object.defineProperty() too in ES5+. 
+        
+            Object.assign() just allows you to attach multiple static methods in one function call, 
+        but you can just direct assign each method individually without using Object.assign() and have wide browser compatibility */
+
+        
+    </script>
+</body>
+</html>

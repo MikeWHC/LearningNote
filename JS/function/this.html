@@ -152,6 +152,23 @@
         }
         obj.greeting();
         console.log(name); // Opus
+
+        // 三種物件方法的寫法，及各自的this分別代表著
+        const obj2 = {
+            oldFunc: function() {
+                console.log(this)
+            },
+            shortHandFunc() {
+                console.log(this)
+            },
+            arrowFunc: () => {
+                console.log(this)
+            }
+        }
+        obj2.oldFunc() // obj2
+        obj2.shortHandFunc() // obj2
+        obj2.arrowFunc() // window
+
     </script>
 </body>
 
